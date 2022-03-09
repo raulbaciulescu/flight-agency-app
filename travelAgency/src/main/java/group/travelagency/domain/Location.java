@@ -24,4 +24,12 @@ public class Location extends Entity<Long> {
         this.name = name;
         this.airport = airport;
     }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "name='" + name + '\'' +
+                ", airport='" + airport + '\'' +
+                '}';
+    }
 }

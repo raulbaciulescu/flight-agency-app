@@ -57,4 +57,15 @@ public class Purchase extends Entity<Long> {
     public void setNrOfSeats(int nrOfSeats) {
         this.nrOfSeats = nrOfSeats;
     }
+
+    @Override
+    public String toString() {
+        return "Purchase{" +
+                "flight=" + flight +
+                ", clientName='" + clientName + '\'' +
+                ", clientAddress='" + clientAddress + '\'' +
+                ", tourists=" + tourists +
+                ", nrOfSeats=" + nrOfSeats +
+                '}';
+    }
 }
