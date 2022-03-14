@@ -46,4 +46,15 @@ public class User extends Entity<Long>{
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }

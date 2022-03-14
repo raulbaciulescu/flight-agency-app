@@ -14,5 +14,6 @@ namespace travelAgency2.src.Domain
         {
             Id = id;
         }
+
     }
 }
