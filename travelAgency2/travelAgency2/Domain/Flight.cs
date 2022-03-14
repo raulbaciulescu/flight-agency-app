@@ -20,5 +20,11 @@ namespace travelAgency2.src.Domain
             this.startDate = startDate;
             this.nrOfSeats = nrOfSeats;
         }
+
+        public override string ToString()
+        {
+            //base.ToString() + ": " +
+            return start + " " + destination + " " + startDate + " " + nrOfSeats;
+        }
     }
 }

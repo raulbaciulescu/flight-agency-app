@@ -16,5 +16,11 @@ namespace travelAgency2.src.Domain
             this.name = name;
             this.airport = airport;
         }
+
+        public override string ToString()
+        {
+            //base.ToString() + ": " +
+            return name + " " + airport;
+        }
     }
 }

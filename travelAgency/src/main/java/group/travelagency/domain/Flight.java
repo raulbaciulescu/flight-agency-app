@@ -48,4 +48,14 @@ public class Flight extends Entity<Long> {
     public void setNrOfSeats(int nrOfSeats) {
         this.nrOfSeats = nrOfSeats;
     }
+
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "start=" + start +
+                ", destination=" + destination +
+                ", startDate=" + startDate +
+                ", nrOfSeats=" + nrOfSeats +
+                '}';
+    }
 }

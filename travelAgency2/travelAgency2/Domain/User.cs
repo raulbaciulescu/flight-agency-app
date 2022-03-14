@@ -19,5 +19,11 @@ namespace travelAgency2.src.Domain
             this.firstName = firstName;
             this.lastName = lastName;
         }
+
+        public override string ToString()
+        {
+            //base.ToString() + ": " +
+            return username + " " + hashedPassword + " " + firstName + " " + lastName;
+        }
     }
 }
