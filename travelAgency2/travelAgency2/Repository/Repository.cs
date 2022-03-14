@@ -9,10 +9,10 @@ namespace travelAgency2.src.Repository
 {
     internal interface Repository<ID, T> where T : Entity<ID>
     {
-        void add(T entity);
-        void update(T entity);
-        T findByID(ID id);
-        void delete(ID id);
-        List<T> getAll();
+        void Add(T entity);
+        void Update(T entity, T newEntity);
+        T FindByID(ID id);
+        void Delete(ID id);
+        List<T> GetAll();
     }
 }

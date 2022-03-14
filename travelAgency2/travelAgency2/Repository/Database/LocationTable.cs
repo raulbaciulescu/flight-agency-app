@@ -40,7 +40,7 @@ namespace travelAgency2.Repository.Database
             statements.Add(Constants.Db.Queries.FIND_BY_ID, command3);
             statements.Add(Constants.Db.Queries.GET_ALL, command4);
         }
-        public void add(Location location)
+        public void Add(Location location)
         {
             logger.Info("enter in add location");
             SQLiteCommand statement = statements[Constants.Db.Queries.ADD];
@@ -59,12 +59,16 @@ namespace travelAgency2.Repository.Database
             }
             logger.Info("exit from add location");
         }
-        public void delete(long id)
+        public void Delete(long id)
         {
             //TODO
         }
 
-        public Location findById(long id)
+        public void Update(Location loc1, Location loc2)
+        {
+            //TODO
+        }
+        public Location FindById(long id)
         {
             logger.Info("enter in findById location");
             List<Location> locations = new List<Location>();
@@ -84,7 +88,7 @@ namespace travelAgency2.Repository.Database
             return locations[0];
         }
 
-        public List<Location> getAll()
+        public List<Location> GetAll()
         {
             logger.Info("enter in getAll location");
             List<Location> locations = new List<Location>();

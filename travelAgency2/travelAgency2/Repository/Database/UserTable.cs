@@ -32,17 +32,24 @@ namespace travelAgency2.Repository.Database
             SQLiteCommand command2 = new SQLiteCommand(connection);
             SQLiteCommand command3 = new SQLiteCommand(connection);
             SQLiteCommand command4 = new SQLiteCommand(connection);
+            SQLiteCommand command5 = new SQLiteCommand(connection);
             command1.CommandText = "INSERT INTO user (id, username, password, firstName, lastName) VALUES (@id, @username, @password, @firstName, @lastName)";
             command2.CommandText = "DELETE FROM user WHERE id = @id";
-            command3.CommandText = "SELECT FROM user WHERE id = @id";
+            command3.CommandText = "SELECT * FROM user WHERE id = @id";
             command4.CommandText = "SELECT * FROM user";
+            command5.CommandText = "SELECT * FROM user WHERE username = @username AND password = @password;";
             statements.Add(Constants.Db.Queries.ADD, command1);
             statements.Add(Constants.Db.Queries.DELETE, command2);
             statements.Add(Constants.Db.Queries.FIND_BY_ID, command3);
             statements.Add(Constants.Db.Queries.GET_ALL, command4);
-    }
+            statements.Add(Constants.Db.Queries.FIND2, command5);
+        }
+        public void Update(User user, User userNew)
+        {
+            //TODO
+        }
 
-    public void add(User user)
+        public void Add(User user)
         {
             logger.Info("enter in add user");
             SQLiteCommand statement = statements[Constants.Db.Queries.ADD];
@@ -65,12 +72,12 @@ namespace travelAgency2.Repository.Database
             logger.Info("exit from add user");
         }
 
-        public void delete(long id)
+        public void Delete(long id)
         {
            //TODO
         }
 
-        public User findById(long id)
+        public User FindById(long id)
         {
             logger.Info("enter in findById user");
             List<User> users = new List<User>();  
@@ -87,10 +94,12 @@ namespace travelAgency2.Repository.Database
             }
             logger.Info("exit from findById user");
             reader.Close();
-            return users[0];
+            if (users.Count > 0)
+                return users[0];
+            return null;
         }
 
-        public List<User> getAll()
+        public List<User> GetAll()
         {
             logger.Info("enter in getAll user");
             List<User> users = new List<User>();
@@ -108,6 +117,27 @@ namespace travelAgency2.Repository.Database
             logger.Info("exit from getAll user");
             return users;
         }
-     
+        public User findUser(string username, string password)
+        {
+            logger.Info("enter in findUser user");
+            List<User> users = new List<User>();
+            SQLiteCommand statement = statements[Constants.Db.Queries.FIND2];
+            statement.Parameters.AddWithValue("@username", username);
+            statement.Parameters.AddWithValue("@password", password);
+            SQLiteDataReader reader = statement.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    User user = new User((long)reader.GetInt64(4), reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3));
+                    users.Add(user);
+                }
+            }
+            logger.Info("exit from findUser user");
+            reader.Close();
+            if (users.Count > 0)
+                return users[0];
+            return null;
+        }
     }
 }

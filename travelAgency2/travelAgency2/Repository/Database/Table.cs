@@ -9,9 +9,10 @@ namespace travelAgency2.Repository.Database
 {
     internal interface Table<ID, T> where T : Entity<ID>
     {
-        void add(T elem);
-        void delete(ID id);
-        T findById(ID id);
-        List<T> getAll();
+        void Add(T elem);
+        void Delete(ID id);
+        void Update(T elem, T newElem);
+        T FindById(ID id);
+        List<T> GetAll();
     }
 }
