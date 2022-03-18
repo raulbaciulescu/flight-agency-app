@@ -32,21 +32,21 @@ namespace travelAgency2
 
 
             Location location = new Location(2, "nume1", "airport2");
-            //Resources.getInstance().getLocationRepository().add(location);
-            //Resources.getInstance().getLocationRepository().getAll().ForEach(Console.WriteLine);
+            Resources.getInstance().getLocationRepository().add(location);
+            Resources.getInstance().getLocationRepository().getAll().ForEach(Console.WriteLine);
 
             Flight flight = new Flight(2, location, location, DateTime.UtcNow, 3);
-            //Resources.getInstance().getFlightRepository().add(flight);
-            //Resources.getInstance().getFlightRepository().getAll().ForEach(Console.WriteLine);
+            Resources.getInstance().getFlightRepository().add(flight);
+            Resources.getInstance().getFlightRepository().getAll().ForEach(Console.WriteLine);
 
 
-            List<String> tourists = new List<String>();
-            tourists.Add("raul");
-            tourists.Add("maria");
-            tourists.Add("adi");
-            Purchase purchase = new Purchase(2, flight, "paul", "anina", tourists, 4);
-            Resources.getInstance().getPurchaseRepository().add(purchase);
-            Resources.getInstance().getPurchaseRepository().getAll().ForEach(Console.WriteLine);
+            //List<String> tourists = new List<String>();
+            //tourists.Add("raul");
+            //tourists.Add("maria");
+            //tourists.Add("adi");
+            //Purchase purchase = new Purchase(2, flight, "paul", "anina", tourists, 4);
+            //Resources.getInstance().getPurchaseRepository().add(purchase);
+            //Resources.getInstance().getPurchaseRepository().getAll().ForEach(Console.WriteLine);
 
 
             Application.EnableVisualStyles();
