@@ -61,6 +61,11 @@ public class LocationTable implements Table<Long, Location>{
     }
 
     @Override
+    public void update(Location elem, Location newElem) {
+
+    }
+
+    @Override
     public Optional<Location> findById(Long id) {
         logger.traceEntry();
         List<Location> locations = new ArrayList<>();

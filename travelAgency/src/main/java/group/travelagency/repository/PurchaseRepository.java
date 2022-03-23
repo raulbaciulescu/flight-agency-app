@@ -32,9 +32,16 @@ public class PurchaseRepository implements Repository<Long, Purchase> {
     }
 
     @Override
-    public void update(Purchase entity) {
-        //TODO
+    public void update(Purchase entity, Purchase newEntity) {
+        PurchaseDto purchaseDto = new PurchaseDto(entity.getFlight().getId(), entity.getClientName(), entity.getClientAddress(),
+                entity.getTourists(), entity.getNrOfSeats());
+        PurchaseDto purchaseDtoNew = new PurchaseDto(newEntity.getFlight().getId(), newEntity.getClientName(), newEntity.getClientAddress(),
+                newEntity.getTourists(), newEntity.getNrOfSeats());
+        purchaseDto.setId(entity.getId());
+        purchaseDtoNew.setId(entity.getId());
+        table.update(purchaseDto, purchaseDtoNew);
     }
+
 
     @Override
     public Optional<Purchase> findByID(Long aLong) throws SQLException {

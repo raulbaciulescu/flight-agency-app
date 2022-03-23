@@ -91,6 +91,11 @@ public class PurchaseTable implements Table<Long, PurchaseDto> {
     }
 
     @Override
+    public void update(PurchaseDto elem, PurchaseDto newElem) {
+
+    }
+
+    @Override
     public Optional<PurchaseDto> findById(Long id) {
         logger.traceEntry();
         List<PurchaseDto> purchaseDtos = new ArrayList<>();
