@@ -30,8 +30,14 @@ public class FlightRepository implements Repository<Long, Flight> {
     }
 
     @Override
-    public void update(Flight entity) {
-        //TODO
+    public void update(Flight entity, Flight newEntity) {
+        FlightDto flightDto = new FlightDto(entity.getStart().getId(), entity.getDestination().getId(),
+                entity.getStartDate(), entity.getNrOfSeats());
+        FlightDto flightDtoNew = new FlightDto(newEntity.getStart().getId(), newEntity.getDestination().getId(),
+                newEntity.getStartDate(), newEntity.getNrOfSeats());
+        flightDtoNew.setId(entity.getId());
+        flightDto.setId(entity.getId());
+        table.update(flightDto, flightDtoNew);
     }
 
     @Override
@@ -63,9 +69,10 @@ public class FlightRepository implements Repository<Long, Flight> {
                 Optional<Location> start = Resources.getInstance().getLocationRepository().findByID(flightDto.getStartId());
                 Optional<Location> destination = Resources.getInstance().getLocationRepository().findByID(flightDto.getDestinationId());
                 if (start.isPresent() && destination.isPresent()) {
-                    flights.add(new Flight(start.get(), destination.get(),
-                            flightDto.getStartDate(), flightDto.getNrOfSeats())
-                    );
+                    Flight flight = new Flight(start.get(), destination.get(),
+                            flightDto.getStartDate(), flightDto.getNrOfSeats());
+                    flight.setId(flightDto.getId());
+                    flights.add(flight);
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();

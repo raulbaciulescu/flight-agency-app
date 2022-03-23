@@ -14,7 +14,7 @@ import java.util.*;
 
 public class UserTable implements Table<Long, User>{
     private final Connection connection;
-    private Map<Constants.Db.Queries, PreparedStatement> statements;
+    private final Map<Constants.Db.Queries, PreparedStatement> statements;
     private static final Logger logger = LogManager.getLogger();
 
     public UserTable(Connection connection) throws SQLException {
@@ -37,6 +37,10 @@ public class UserTable implements Table<Long, User>{
         statements.put(Constants.Db.Queries.GET_ALL,
                 connection.prepareStatement("SELECT * FROM user"
                 ));
+        statements.put(Constants.Db.Queries.FIND2,
+                connection.prepareStatement("SELECT * FROM user WHERE username = ? AND password = ?"
+                ));
+
     }
     @Override
     public void add(User user) {
@@ -59,6 +63,11 @@ public class UserTable implements Table<Long, User>{
 
     @Override
     public void delete(Long o) {
+
+    }
+
+    @Override
+    public void update(User elem, User newElem) {
 
     }
 
@@ -113,5 +122,32 @@ public class UserTable implements Table<Long, User>{
         }
         logger.traceExit();
         return users;
+    }
+
+    public Optional<User> findUser(String username, String password) {
+        logger.traceEntry();
+        List<User> users = new ArrayList<>();
+        PreparedStatement statement = statements.get(Constants.Db.Queries.FIND2);
+        try {
+            statement.setString(1, username);
+            statement.setString(2, password);
+            try (ResultSet result = statement.executeQuery()) {
+                while (result.next()) {
+                    long id1 = result.getLong("id");
+                    String username1 = result.getString("username");
+                    String password1 = result.getString("password");
+                    String firstName = result.getString("firstName");
+                    String lastName = result.getString("lastName");
+                    User user = new User(username, password, firstName, lastName);
+                    user.setId(id1);
+                    users.add(user);
+                }
+            }
+        } catch (SQLException throwables) {
+            logger.error(throwables);
+            System.out.println("Error db" + throwables);
+        }
+        logger.traceExit();
+        return Optional.of(users.get(0));
     }
 }

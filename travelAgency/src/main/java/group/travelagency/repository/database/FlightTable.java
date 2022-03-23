@@ -1,5 +1,6 @@
 package group.travelagency.repository.database;
 
+import group.travelagency.domain.Flight;
 import group.travelagency.domain.Location;
 import group.travelagency.domain.dto.FlightDto;
 import group.travelagency.utils.Constants;
@@ -38,6 +39,8 @@ public class FlightTable implements Table<Long, FlightDto> {
         statements.put(Constants.Db.Queries.GET_ALL,
                 connection.prepareStatement("SELECT * FROM flight"
                 ));
+        statements.put(Constants.Db.Queries.UPDATE,
+                connection.prepareStatement("UPDATE flight SET nrOfSeats = ? WHERE id = ?"));
     }
 
     @Override
@@ -62,6 +65,22 @@ public class FlightTable implements Table<Long, FlightDto> {
     @Override
     public void delete(Long o) {
         //TODO
+    }
+
+    @Override
+    public void update(FlightDto elem, FlightDto newElem) {
+        logger.traceEntry();
+        PreparedStatement statement = statements.get(Constants.Db.Queries.UPDATE);
+        try {
+            statement.setInt(1, newElem.getNrOfSeats());
+            statement.setLong(2, elem.getId());
+            int result = statement.executeUpdate();
+            logger.trace("Updated {} instances", result);
+        } catch (SQLException e) {
+            logger.error(e);
+            System.err.println("Error DB " + e);
+        }
+        logger.traceExit();
     }
 
     @Override

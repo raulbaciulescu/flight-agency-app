@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class UserRepository implements Repository<Long, User>{
-    private final Table<Long, User> table;
+    private final UserTable table;
 
     public UserRepository() throws SQLException {
         table = (UserTable) Resources.getTableFactory().getTable(Constants.Db.Tables.USER);
@@ -23,9 +23,10 @@ public class UserRepository implements Repository<Long, User>{
     }
 
     @Override
-    public void update(User entity) {
-        //TODO
+    public void update(User entity, User newEntity) {
+
     }
+
 
     @Override
     public Optional<User> findByID(Long id) {
@@ -44,5 +45,9 @@ public class UserRepository implements Repository<Long, User>{
 
     public Table<Long, User> getTable() {
         return table;
+    }
+
+    public Optional<User> findUser(String username, String password) {
+        return table.findUser(username, password);
     }
 }
