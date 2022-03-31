@@ -20,42 +20,46 @@ namespace travelAgency2.Repository
             table = (FlightTable) Resources.getTableFactory().getTable(Constants.Db.Tables.FLIGHT);
         }
 
-        public void add(Flight flight)
+        public void Add(Flight flight)
         {
             FlightDto flightDto = new FlightDto(flight.Id, flight.start.Id, flight.destination.Id, flight.startDate,
                 flight.nrOfSeats);
-            table.add(flightDto);
+            table.Add(flightDto);
         }
 
-        public void delete(long id)
+        public void Delete(long id)
         {
             throw new NotImplementedException();
         }
 
-        public Flight findByID(long id)
+        public Flight FindByID(long id)
         {
-            FlightDto flightDto = table.findById(id);
-            Location start = Resources.getInstance().getLocationRepository().findByID(flightDto.startId);
-            Location destination = Resources.getInstance().getLocationRepository().findByID(flightDto.destinationId);
+            FlightDto flightDto = table.FindById(id);
+            Location start = Resources.GetInstance().getLocationRepository().FindByID(flightDto.startId);
+            Location destination = Resources.GetInstance().getLocationRepository().FindByID(flightDto.destinationId);
             return new Flight(flightDto.Id, start, destination, flightDto.startDate, flightDto.nrOfSeats);
         }
 
-        public List<Flight> getAll()
+        public List<Flight> GetAll()
         {
-            List<FlightDto> flightDtos = table.getAll();
+            List<FlightDto> flightDtos = table.GetAll();
             List<Flight> flights = new List<Flight>();
             foreach (FlightDto flightDto in flightDtos)
             {
-                Location start = Resources.getInstance().getLocationRepository().findByID(flightDto.startId);
-                Location destination = Resources.getInstance().getLocationRepository().findByID(flightDto.destinationId);
+                Location start = Resources.GetInstance().getLocationRepository().FindByID(flightDto.startId);
+                Location destination = Resources.GetInstance().getLocationRepository().FindByID(flightDto.destinationId);
                 flights.Add(new Flight(flightDto.Id, start, destination, flightDto.startDate, flightDto.nrOfSeats));
             }
             return flights;
         }
 
-        public void update(Flight entity)
+        public void Update(Flight entity, Flight flightNew)
         {
-            throw new NotImplementedException();
+            FlightDto flightDto = new FlightDto(entity.Id, entity.start.Id, entity.destination.Id,
+                entity.startDate, entity.nrOfSeats);
+            FlightDto flightDtoNew = new FlightDto(flightNew.Id, flightNew.start.Id, flightNew.destination.Id,
+                    flightNew.startDate, flightNew.nrOfSeats);
+            table.Update(flightDto, flightDtoNew);
         }
     }
 }

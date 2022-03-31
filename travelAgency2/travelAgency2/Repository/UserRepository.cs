@@ -12,36 +12,41 @@ namespace travelAgency2.Repository
 {
     internal class UserRepository : Repository<long, User>
     {
-        private Table<long, User> table;
+        private UserTable table;
 
         public UserRepository()
         {
             table = (UserTable) Resources.getTableFactory().getTable(Constants.Db.Tables.USER);
          }
            
-        public void add(User entity)
+        public void Add(User entity)
         {
-            table.add(entity);
+            table.Add(entity);
         }
 
-        public void delete(long id)
+        public void Delete(long id)
         {
             throw new NotImplementedException();
         }
 
-        public User findByID(long id)
+        public User FindByID(long id)
         {
-            return table.findById(id);
+            return table.FindById(id);
         }
 
-        public List<User> getAll()
+        public List<User> GetAll()
         {
-            return table.getAll();
+            return table.GetAll();
         }
 
-        public void update(User entity)
+        public void Update(User entity, User entityNew)
         {
             throw new NotImplementedException();
+        }
+
+        internal User findUser(string username, string password)
+        {
+            return table.findUser(username, password);
         }
     }
 }

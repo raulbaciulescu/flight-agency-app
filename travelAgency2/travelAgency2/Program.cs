@@ -28,30 +28,30 @@ namespace travelAgency2
 
             User user = new User(3L, "raul", "pass", "raul", "baciulescu");
             //Resources.getInstance().getUserRepository().add(user);
-            //Resources.getInstance().getUserRepository().getAll().ForEach(Console.WriteLine);
+            
+            Console.WriteLine(Resources.GetInstance().getUserRepository().FindByID(1L));
 
-
-            Location location = new Location(2, "nume1", "airport2");
+            //Location location = new Location(2, "nume1", "airport2");
             //Resources.getInstance().getLocationRepository().add(location);
             //Resources.getInstance().getLocationRepository().getAll().ForEach(Console.WriteLine);
 
-            Flight flight = new Flight(2, location, location, DateTime.UtcNow, 3);
+            //Flight flight = new Flight(2, location, location, DateTime.UtcNow, 3);
             //Resources.getInstance().getFlightRepository().add(flight);
             //Resources.getInstance().getFlightRepository().getAll().ForEach(Console.WriteLine);
 
 
-            List<String> tourists = new List<String>();
-            tourists.Add("raul");
-            tourists.Add("maria");
-            tourists.Add("adi");
-            Purchase purchase = new Purchase(2, flight, "paul", "anina", tourists, 4);
-            Resources.getInstance().getPurchaseRepository().add(purchase);
-            Resources.getInstance().getPurchaseRepository().getAll().ForEach(Console.WriteLine);
+            //List<String> tourists = new List<String>();
+            //tourists.Add("raul");
+            //tourists.Add("maria");
+            //tourists.Add("adi");
+            //Purchase purchase = new Purchase(2, flight, "paul", "anina", tourists, 4);
+            //Resources.getInstance().getPurchaseRepository().add(purchase);
+            //Resources.getInstance().getPurchaseRepository().getAll().ForEach(Console.WriteLine);
 
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new LoginForm());
         }
     }
 }

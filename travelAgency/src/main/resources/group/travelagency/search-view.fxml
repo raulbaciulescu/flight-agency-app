@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="537.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.travelagency.controller.SearchController">
+   <children>
+      <TableView fx:id="tableView" layoutX="38.0" layoutY="53.0" prefHeight="280.0" prefWidth="676.0">
+         <columns>
+            <TableColumn fx:id="tableColumnStart" prefWidth="187.0" text="Start" />
+            <TableColumn fx:id="tableColumnDestination" prefWidth="206.0" text="Destination" />
+            <TableColumn fx:id="tableColumnStartDate" prefWidth="183.0" text="Start Date" />
+            <TableColumn fx:id="tableColumnNrOfSeats" prefWidth="98.0" text="Nr Of Seats" />
+            <TableColumn fx:id="tableColumnId" prefWidth="75.0" text="Column X" />
+         </columns>
+      </TableView>
+      <DatePicker fx:id="datePicker" layoutX="40.0" layoutY="411.0" />
+      <TextField fx:id="txtFieldDestination" layoutX="40.0" layoutY="374.0" />
+      <Button fx:id="btnSearch" layoutX="40.0" layoutY="459.0" onMouseClicked="#onSearchBtnClicked" text="Search" />
+      <Button fx:id="btnBack" layoutX="683.0" layoutY="459.0" onMouseClicked="#onBackBtnClicked" text="Back" />
+      <Text fx:id="errors" fill="RED" layoutX="36.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0"
+            text="Something went wrong!" textAlignment="CENTER" visible="false" wrappingWidth="157.8203125" AnchorPane.topAnchor="349.0" />
+      <Button fx:id="btnPurchase" layoutX="154.0" layoutY="459.0" mnemonicParsing="false" onMouseClicked="#onPurchaseBtnClicked" text="Purchase" />
+   </children>
+</AnchorPane>

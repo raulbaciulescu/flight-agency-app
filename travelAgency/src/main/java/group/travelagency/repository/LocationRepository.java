@@ -26,8 +26,8 @@ public class LocationRepository implements Repository<Long, Location> {
     }
 
     @Override
-    public void update(Location entity) {
-        //TODO
+    public void update(Location entity, Location newEntity) {
+
     }
 
     @Override
