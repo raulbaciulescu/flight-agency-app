@@ -31,18 +31,21 @@ namespace travelAgency2.Repository.Database
             SQLiteCommand command2 = new SQLiteCommand(connection);
             SQLiteCommand command3 = new SQLiteCommand(connection);
             SQLiteCommand command4 = new SQLiteCommand(connection);
+            SQLiteCommand command5 = new SQLiteCommand(connection);
             command1.CommandText = "INSERT INTO flight (id, startId, destinationId, startDate, nrOfSeats) " +
                 "VALUES (@id, @startId, @destinationId, @startDate, @nrOfSeats)";
             command2.CommandText = "DELETE * FROM flight WHERE id = @id";
             command3.CommandText = "SELECT * FROM flight WHERE id = @id";
             command4.CommandText = "SELECT * FROM flight";
+            command5.CommandText = "UPDATE flight SET nrOfSeats = @nrOfSeats WHERE id = @id";
             statements.Add(Constants.Db.Queries.ADD, command1);
             statements.Add(Constants.Db.Queries.DELETE, command2);
             statements.Add(Constants.Db.Queries.FIND_BY_ID, command3);
             statements.Add(Constants.Db.Queries.GET_ALL, command4);
+            statements.Add(Constants.Db.Queries.UPDATE, command5);
         }
 
-        public void add(FlightDto flight)
+        public void Add(FlightDto flight)
         {
             logger.Info("enter in add flight");
             SQLiteCommand statement = statements[Constants.Db.Queries.ADD];
@@ -63,12 +66,30 @@ namespace travelAgency2.Repository.Database
             }
             logger.Info("exit from add flight");
         }
-        public void delete(long id)
+        public void Delete(long id)
         {
             //TODO
         }
 
-        public FlightDto findById(long id)
+        public void Update(FlightDto flightDto, FlightDto flightDto1)
+        {
+            logger.Info("enter in update flight");
+            SQLiteCommand statement = statements[Constants.Db.Queries.UPDATE];
+            try
+            {
+                statement.Parameters.AddWithValue("@id", flightDto.Id);
+                statement.Parameters.AddWithValue("@nrOfSeats", flightDto1.nrOfSeats);
+                int numberofrowsaffected = statement.ExecuteNonQuery();
+                logger.InfoFormat("Updated {0} instances", numberofrowsaffected);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                Console.WriteLine(ex.Message);
+            }
+            logger.Info("exit from update flight");
+        }
+        public FlightDto FindById(long id)
         {
             logger.Info("enter in findById flight");
             List<FlightDto> flights = new List<FlightDto>();
@@ -90,7 +111,7 @@ namespace travelAgency2.Repository.Database
             return flights[0];
         }
 
-        public List<FlightDto> getAll()
+        public List<FlightDto> GetAll()
         {
             logger.Info("enter in getAll flight");
             List<FlightDto> flights = new List<FlightDto>();

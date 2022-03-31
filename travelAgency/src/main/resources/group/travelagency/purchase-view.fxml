@@ -22,7 +22,7 @@
        <VBox fx:id="pane" layoutX="356.0" layoutY="257.0" prefHeight="238.0" prefWidth="149.0" />
        <Button layoutX="394.0" layoutY="527.0" mnemonicParsing="false" onAction="#newFields" text="New Fields" />
        <Button layoutX="500.0" layoutY="527.0" mnemonicParsing="false" onMouseClicked="#onPurchaseBtnClicked" text="Purchase" />
-       <Text fx:id="errors" fill="RED" layoutX="356.0" layoutY="515.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Something goes wrong!" textAlignment="CENTER" visible="false" wrappingWidth="157.8203125" AnchorPane.topAnchor="502.05078125" />
+       <Text fx:id="errors" fill="RED" layoutX="356.0" layoutY="515.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Something went wrong!" textAlignment="CENTER" visible="false" wrappingWidth="157.8203125" AnchorPane.topAnchor="502.05078125" />
 
    </children>
 </AnchorPane>

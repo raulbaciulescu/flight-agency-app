@@ -16,7 +16,9 @@ namespace travelAgency2.Utils
                 ADD,
                 DELETE,
                 FIND_BY_ID,
-                GET_ALL
+                GET_ALL,
+                FIND2,
+                UPDATE
             }
             public enum Tables
             {

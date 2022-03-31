@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using travelAgency2.Utils;
 
 namespace travelAgency2
 {
@@ -15,6 +16,11 @@ namespace travelAgency2
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Navigation.Navigate(new LoginForm());
         }
     }
 }
