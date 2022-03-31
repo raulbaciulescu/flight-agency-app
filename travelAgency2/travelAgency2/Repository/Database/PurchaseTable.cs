@@ -69,7 +69,7 @@ namespace travelAgency2.Repository.Database
             }
             logger.Info("exit from add tourist");
         }
-        public void add(PurchaseDto purchaseDto)
+        public void Add(PurchaseDto purchaseDto)
         {
             logger.Info("enter in add purchase");
             SQLiteCommand statement = statements[Constants.Db.Queries.ADD];
@@ -92,11 +92,14 @@ namespace travelAgency2.Repository.Database
             logger.Info("exit from add purchase");
         }
 
-        public void delete(long id)
+        public void Delete(long id)
         {
             //TODO
         }
-
+        public void Update(PurchaseDto purchaseDto, PurchaseDto purchaseDto1)
+        {
+            //TODO
+        }
         public List<String> getTourists(long id)
         {
             logger.Info("enter in getTourists");
@@ -115,7 +118,7 @@ namespace travelAgency2.Repository.Database
             logger.Info("exit from get tourists");
             return tourists;
         }
-        public PurchaseDto findById(long id)
+        public PurchaseDto FindById(long id)
         {
             logger.Info("enter in findById purchase");
             List<PurchaseDto> purchaseDtos = new List<PurchaseDto>();
@@ -137,7 +140,7 @@ namespace travelAgency2.Repository.Database
             return purchaseDtos[0];
         }
 
-        public List<PurchaseDto> getAll()
+        public List<PurchaseDto> GetAll()
         {
             logger.Info("enter in getAll purchase");
             List<PurchaseDto> purchaseDtos = new List<PurchaseDto>();

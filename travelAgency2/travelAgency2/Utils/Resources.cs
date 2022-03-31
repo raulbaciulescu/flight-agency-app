@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using travelAgency2.Repository;
 using travelAgency2.Repository.Database;
+using travelAgency2.Service;
+using travelAgency2.src.Domain;
 
 namespace travelAgency2.Utils
 {
@@ -18,8 +20,12 @@ namespace travelAgency2.Utils
         private LocationRepository locationRepository;
         private FlightRepository flightRepository;
         private PurchaseRepository purchaseRepository;
-
-        public static Resources getInstance()
+        private UserService userService;
+        private LoginService loginService;
+        private FlightService flightService;
+        private PurchaseService purchaseService;
+        private Flight selectedFlight = null;
+        public static Resources GetInstance()
         {
             if (instance == null)
                 instance = new Resources();
@@ -32,8 +38,38 @@ namespace travelAgency2.Utils
             locationRepository = new LocationRepository();
             flightRepository = new FlightRepository();
             purchaseRepository = new PurchaseRepository();
+            userService = new UserService(userRepository);
+            loginService = new LoginService();
+            flightService = new FlightService(flightRepository);
+            purchaseService = new PurchaseService(purchaseRepository, flightService);
         }
 
+        public void SetSelectedFlight(Flight flight)
+        {
+            this.selectedFlight = flight;
+        }
+
+        public Flight GetSelectedFlight()
+        {
+            return this.selectedFlight;
+        }
+
+        public PurchaseService GetPurchaseService()
+        {
+            return purchaseService;
+        }
+        public FlightService GetFlightService()
+        {
+            return flightService;
+        }
+        public LoginService GetLoginService()
+        {
+            return loginService;
+        }
+        public UserService GetUserService()
+        {
+            return userService;
+        }
         public LocationRepository getLocationRepository()
         {
             return locationRepository;

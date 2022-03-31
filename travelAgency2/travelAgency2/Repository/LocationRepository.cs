@@ -19,27 +19,28 @@ namespace travelAgency2.Repository
             table = (LocationTable) Resources.getTableFactory().getTable(Constants.Db.Tables.LOCATION);
         }
 
-        public void add(Location entity)
+        public void Add(Location entity)
         {
-            table.add(entity);
+            table.Add(entity);
         }
 
-        public void delete(long id)
+        public void Delete(long id)
         {
             throw new NotImplementedException();
         }
 
-        public Location findByID(long id)
+        public Location FindByID(long id)
         {
-            return table.findById(id);
+            return table.FindById(id);
         }
 
-        public List<Location> getAll()
+        public List<Location> GetAll()
         {
-            return table.getAll();
+            return table.GetAll();
         }
 
-        public void update(Location entity)
+
+        public void Update(Location entity, Location enitityNew)
         {
             throw new NotImplementedException();
         }

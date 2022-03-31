@@ -6,7 +6,6 @@ public class LoginService {
     private User currentUser = null;
 
 
-
     public User getCurrentUser() {
         return currentUser;
     }

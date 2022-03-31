@@ -20,40 +20,40 @@ namespace travelAgency2.Repository
             table = (PurchaseTable)Resources.getTableFactory().getTable(Constants.Db.Tables.PURCHASE);
         }
 
-        public void add(Purchase purchase)
+        public void Add(Purchase purchase)
         {
             PurchaseDto purchaseDto = new PurchaseDto(purchase.Id, purchase.flight.Id, purchase.clientName,
                 purchase.clientAddress, purchase.tourists, purchase.nrOfSeats);
-            table.add(purchaseDto);
+            table.Add(purchaseDto);
         }
 
-        public void delete(long id)
+        public void Delete(long id)
         {
             throw new NotImplementedException();
         }
 
-        public Purchase findByID(long id)
+        public Purchase FindByID(long id)
         {
-            PurchaseDto purchaseDto = table.findById(id);
-            Flight flight = Resources.getInstance().getFlightRepository().findByID(purchaseDto.flightId);
+            PurchaseDto purchaseDto = table.FindById(id);
+            Flight flight = Resources.GetInstance().getFlightRepository().FindByID(purchaseDto.flightId);
             return new Purchase(purchaseDto.Id, flight, purchaseDto.clientName, purchaseDto.clientAddress,
                 purchaseDto.tourists, purchaseDto.nrOfSeats);
         }
 
-        public List<Purchase> getAll()
+        public List<Purchase> GetAll()
         {
-            List<PurchaseDto> purchaseDtos = table.getAll();
+            List<PurchaseDto> purchaseDtos = table.GetAll();
             List<Purchase> purchases = new List<Purchase>();
             foreach (PurchaseDto purchaseDto in purchaseDtos)
             {
-                Flight flight = Resources.getInstance().getFlightRepository().findByID(purchaseDto.flightId);
+                Flight flight = Resources.GetInstance().getFlightRepository().FindByID(purchaseDto.flightId);
                 purchases.Add(new Purchase(purchaseDto.Id, flight, purchaseDto.clientName, purchaseDto.clientAddress,
                     purchaseDto.tourists, purchaseDto.nrOfSeats));
             }
             return purchases;
         }
 
-        public void update(Purchase entity)
+        public void Update(Purchase entity, Purchase entityNew)
         {
             throw new NotImplementedException();
         }
