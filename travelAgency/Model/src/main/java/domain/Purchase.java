@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Purchase extends Entity<Long> implements Serializable {
@@ -17,6 +18,14 @@ public class Purchase extends Entity<Long> implements Serializable {
         this.clientAddress = clientAddress;
         this.tourists = tourists;
         this.nrOfSeats = nrOfSeats;
+    }
+
+    public Purchase(Flight flight, String clientName, String clientAddress, int nrOfSeats) {
+        this.flight = flight;
+        this.clientName = clientName;
+        this.clientAddress = clientAddress;
+        this.nrOfSeats = nrOfSeats;
+        tourists = new ArrayList<>();
     }
 
     public Flight getFlight() {

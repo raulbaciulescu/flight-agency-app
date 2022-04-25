@@ -4,6 +4,6 @@ public enum ResponseType {
     OK,
     ERROR,
     GET_FLIGHTS,
-    PURCHASE,
+    //PURCHASE,
     FLIGHT
 }
