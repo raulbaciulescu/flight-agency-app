@@ -1,6 +1,7 @@
 ﻿using System.Net.Sockets;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.Json;
 using model;
 using services;
 using travelAgency2.Service;
@@ -68,6 +69,7 @@ namespace networking
             {
                 try
                 {
+                   // JsonSerializer serializer = new JsonSerializer();
                     Response response = (Response) formatter.Deserialize(stream);
                     Console.WriteLine("response received " + response);
                     if (IsUpdate(response))
