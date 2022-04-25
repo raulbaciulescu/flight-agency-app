@@ -18,6 +18,12 @@ namespace model
             this.airport = airport;
         }
 
+        public Location(string name) : base(0L)
+        {
+            this.name = name;
+            airport = "";
+        }
+
         public override string ToString()
         {
             //base.ToString() + ": " +
