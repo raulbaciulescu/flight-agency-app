@@ -1,6 +1,7 @@
 import api.FlightRepository;
 import api.LocationRepository;
 import api.UserRepository;
+import domain.User;
 import impl.FlightRepositoryImpl;
 import impl.LocationRepositoryImpl;
 import impl.PurchaseRepositoryImpl;
@@ -18,7 +19,6 @@ import java.util.Properties;
 
 public class StartServer {
     private static final int defaultPort = 55555;
-
     public static void main(String[] args) throws SQLException {
         Properties serverProps = new Properties();
         try {
@@ -29,8 +29,6 @@ public class StartServer {
             System.err.println("Cannot find server.properties " + e);
             return;
         }
-
-
         TableFactory factory = new TableFactory();
         UserRepository userRepository = new UserRepositoryImpl(factory);
         LocationRepository locationRepository = new LocationRepositoryImpl(factory);

@@ -1,4 +1,7 @@
-﻿using System.Net.Sockets;
+﻿using System.IO.Compression;
+using System.Net.Sockets;
+using System.Text.Json;
+using model;
 using networking;
 using persistance;
 using persistance.Database;
@@ -7,8 +10,18 @@ namespace server;
 
 public class StartServer
 {
+    private static void Test()
+    {
+        User user = new User("nume", "parola");
+        string stringg = JsonSerializer.Serialize(user);
+        Console.Write(stringg);
+
+        User user2 = (User) JsonSerializer.Deserialize(stringg, user.GetType());
+        Console.Write(user2);
+    }
     static void Main(string[] args)
     {
+        Test();
         TableFactory factory = new TableFactory();
         UserRepository userRepository = new UserRepository(factory);
         LocationRepository locationRepository = new LocationRepository(factory);

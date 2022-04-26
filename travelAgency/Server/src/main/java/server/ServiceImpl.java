@@ -69,7 +69,8 @@ public class ServiceImpl implements Service {
         notifyUsers(flightNew);
     }
 
-    public void notifyUsers(Flight flight) {
+
+    public synchronized void notifyUsers(Flight flight) {
         int defaultThreadsNo = 5;
         ExecutorService executor= Executors.newFixedThreadPool(defaultThreadsNo);
         for (Observer observer: loggedUsers.values()) {

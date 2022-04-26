@@ -18,6 +18,16 @@ namespace model
         {
             this.username = username;
             this.password = password;
+            this.firstName = "";
+            this.lastName = "";
+        }
+
+        public User() : base(0L)
+        {
+            username = "";
+            password = "";
+            lastName = "";
+            firstName = "";
         }
         public User(long id, string username, string password, string firstName, string lastName) : base(id)
         {
