@@ -1,10 +1,21 @@
 package domain;
 
+
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@jakarta.persistence.Entity
+@Table( name = "user")
 public class User extends Entity<Long>{
     private String username;
     private String password;
     private String firstName;
     private String lastName;
+
+
+    public User() {
+
+    }
 
     public User(String username, String password, String firstName, String lastName) {
         this.username = username;
@@ -20,8 +31,21 @@ public class User extends Entity<Long>{
         this.lastName = "";
     }
 
-    public User(Long id, String password) {
+    public User(Long id, String username, String password) {
         this.setId(id);
+        this.username = username;
+        this.password = password;
+    }
+
+    @Override
+    @Id
+    public Long getId() {
+        return super.getId();
+    }
+
+    @Override
+    public void setId(Long aLong) {
+        super.setId(aLong);
     }
 
     public User(Long id) {

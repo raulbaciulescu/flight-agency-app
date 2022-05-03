@@ -84,6 +84,7 @@ partial class LoginForm
             this.label1.Size = new System.Drawing.Size(213, 25);
             this.label1.TabIndex = 4;
             this.label1.Text = "Something went wrong!";
+            this.label1.Visible = false;
             // 
             // LoginForm
             // 
