@@ -22,4 +22,6 @@ dependencies {
     implementation 'org.glassfish.jaxb:jaxb-runtime:3.0.0'
     implementation 'com.github.gwenn:sqlite-dialect:0.1.2'
 
+    implementation 'org.springframework:spring-context:5.3.19'
+
 }

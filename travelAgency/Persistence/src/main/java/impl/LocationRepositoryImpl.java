@@ -6,11 +6,13 @@ import api.Table;
 import domain.Location;
 import impl.database.LocationTable;
 import impl.database.TableFactory;
+import org.springframework.stereotype.Component;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class LocationRepositoryImpl implements LocationRepository {
     private final Table<Long, Location> table;
 

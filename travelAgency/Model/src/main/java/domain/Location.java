@@ -6,6 +6,21 @@ public class Location extends Entity<Long> implements Serializable {
     private String name;
     private String airport;
 
+    public Location(Long id, String name, String airport) {
+        this.setId(id);
+        this.name = name;
+        this.airport = airport;
+    }
+
+    public Location() {
+
+    }
+
+    public Location(String name, String airport) {
+        this.name = name;
+        this.airport = airport;
+    }
+
     public String getName() {
         return name;
     }
@@ -19,11 +34,6 @@ public class Location extends Entity<Long> implements Serializable {
     }
 
     public void setAirport(String airport) {
-        this.airport = airport;
-    }
-
-    public Location(String name, String airport) {
-        this.name = name;
         this.airport = airport;
     }
 

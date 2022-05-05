@@ -7,4 +7,5 @@ include 'Services'
 include 'Networking'
 include 'Client'
 include 'Grpc'
+include 'RestServices'
 

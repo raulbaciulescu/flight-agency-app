@@ -2,12 +2,14 @@ package impl.database;
 
 import api.Constants;
 import api.Table;
+import org.springframework.stereotype.Component;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Properties;
 
+@Component
 public class TableFactory {
     private final JdbcUtils dbUtils;
 
