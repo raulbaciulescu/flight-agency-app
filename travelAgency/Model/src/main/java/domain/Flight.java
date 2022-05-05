@@ -1,5 +1,7 @@
 package domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -10,11 +12,24 @@ public class Flight extends Entity<Long> implements Serializable {
     private LocalDateTime startDate;
     private int nrOfSeats;
 
-    public Flight(Long id) {
-
-        this.setId(id);
-    }
     public Flight(Location start, Location destination, LocalDateTime startDate, int nrOfSeats) {
+        this.start = start;
+        this.destination = destination;
+        this.startDate = startDate;
+        this.nrOfSeats = nrOfSeats;
+    }
+
+    public Flight() {
+
+    }
+    public Flight(Long id, LocalDateTime startDate, int nrOfSeats) {
+        this.setId(id);
+        this.startDate = startDate;
+        this.nrOfSeats = nrOfSeats;
+    }
+
+    public Flight(Long id, Location start, Location destination, LocalDateTime startDate, int nrOfSeats) {
+        this.setId(id);
         this.start = start;
         this.destination = destination;
         this.startDate = startDate;
@@ -54,6 +69,7 @@ public class Flight extends Entity<Long> implements Serializable {
     }
 
     @Override
+    @JsonIgnore
     public String toString() {
         return "Flight{" +
                 "start=" + start +

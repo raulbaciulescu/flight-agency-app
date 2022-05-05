@@ -16,4 +16,5 @@ dependencies {
     implementation 'org.hibernate:hibernate-core-jakarta:5.6.8.Final'
     implementation 'org.glassfish.jaxb:jaxb-runtime:3.0.0'
     implementation 'com.github.gwenn:sqlite-dialect:0.1.2'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.5'
 }

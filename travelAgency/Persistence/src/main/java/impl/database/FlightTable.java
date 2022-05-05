@@ -39,7 +39,7 @@ public class FlightTable implements Table<Long, FlightDto> {
                 connection.prepareStatement("SELECT * FROM flight"
                 ));
         statements.put(Constants.Db.Queries.UPDATE,
-                connection.prepareStatement("UPDATE flight SET nrOfSeats = ? WHERE id = ?"));
+                connection.prepareStatement("UPDATE flight SET nrOfSeats = ?, startId = ?, destinationId = ?, startDate = ? WHERE id = ?"));
     }
 
     @Override
@@ -62,8 +62,18 @@ public class FlightTable implements Table<Long, FlightDto> {
     }
 
     @Override
-    public void delete(Long o) {
-        //TODO
+    public void delete(Long id) {
+        logger.traceEntry("delete flight with id {} ", id);
+        PreparedStatement statement = statements.get(Constants.Db.Queries.DELETE);
+        try {
+            statement.setLong(1, id);
+            int result = statement.executeUpdate();
+            logger.trace("Deleted {} instances", result);
+        } catch (SQLException e) {
+            logger.error(e);
+            System.err.println("Error DB " + e);
+        }
+        logger.traceExit();
     }
 
     @Override
@@ -72,7 +82,10 @@ public class FlightTable implements Table<Long, FlightDto> {
         PreparedStatement statement = statements.get(Constants.Db.Queries.UPDATE);
         try {
             statement.setInt(1, newElem.getNrOfSeats());
-            statement.setLong(2, elem.getId());
+            statement.setLong(2, newElem.getStartId());
+            statement.setLong(3, newElem.getDestinationId());
+            statement.setString(4, newElem.getStartDate().toString());
+            statement.setLong(5, elem.getId());
             int result = statement.executeUpdate();
             logger.trace("Updated {} instances", result);
         } catch (SQLException e) {
@@ -106,7 +119,10 @@ public class FlightTable implements Table<Long, FlightDto> {
             System.out.println("Error db" + throwables);
         }
         logger.traceExit();
-        return Optional.of(flights.get(0));
+        if (flights.size() > 0)
+            return Optional.of(flights.get(0));
+        else
+            return Optional.empty();
     }
 
     @Override

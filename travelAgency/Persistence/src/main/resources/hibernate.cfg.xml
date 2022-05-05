@@ -6,7 +6,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="connection.driver_class">org.sqlite.JDBC</property>
-        <property name="connection.url">jdbc:sqlite:D:\Facultate\MPP\Curs\Curs8\HibernateExample\travelAgency.db</property>
+        <property name="connection.url">jdbc:sqlite:D:\Facultate\MPP\mpp-proiect-repository-raulbaciulescu\travelAgency.db</property>
 
         <property name="hibernate.hbm2ddl.auto">update</property>
 

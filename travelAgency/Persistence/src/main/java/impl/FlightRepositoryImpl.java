@@ -9,12 +9,15 @@ import domain.Location;
 import domain.dto.FlightDto;
 import impl.database.FlightTable;
 import impl.database.TableFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class FlightRepositoryImpl implements FlightRepository {
     private final Table<Long, FlightDto> table;
     private final LocationRepository locationRepository;
@@ -44,17 +47,20 @@ public class FlightRepositoryImpl implements FlightRepository {
     }
 
     @Override
-    public Optional<Flight> findByID(Long aLong) throws SQLException {
+    public Optional<Flight> findByID(Long aLong) {
         Optional<FlightDto> optionalFlightDto = table.findById(aLong);
         if (optionalFlightDto.isPresent()) {
-            Optional<Location> start = locationRepository.findByID(optionalFlightDto.get().getStartId());
-            //Optional<Location> destination = Resources.getInstance().getLocationRepository().findByID(optionalFlightDto.get().getDestinationId());
-            Optional<Location> destination = locationRepository.findByID(optionalFlightDto.get().getDestinationId());
-            if (start.isPresent() && destination.isPresent()) {
-                Flight flight = new Flight(start.get(), destination.get(),
-                        optionalFlightDto.get().getStartDate(), optionalFlightDto.get().getNrOfSeats());
-                flight.setId(aLong);
-                return Optional.of(flight);
+            try {
+                Optional<Location> start = locationRepository.findByID(optionalFlightDto.get().getStartId());
+                Optional<Location> destination = locationRepository.findByID(optionalFlightDto.get().getDestinationId());
+                if (start.isPresent() && destination.isPresent()) {
+                    Flight flight = new Flight(start.get(), destination.get(),
+                            optionalFlightDto.get().getStartDate(), optionalFlightDto.get().getNrOfSeats());
+                    flight.setId(aLong);
+                    return Optional.of(flight);
+                }
+            } catch (SQLException e) {
+                return Optional.empty();
             }
         }
         return Optional.empty();
@@ -62,7 +68,7 @@ public class FlightRepositoryImpl implements FlightRepository {
 
     @Override
     public void delete(Long aLong) {
-
+        table.delete(aLong);
     }
 
     @Override
@@ -73,7 +79,8 @@ public class FlightRepositoryImpl implements FlightRepository {
             try {
                 Optional<Location> start = locationRepository.findByID(flightDto.getStartId());
                 Optional<Location> destination = locationRepository.findByID(flightDto.getDestinationId());
-                if (start.isPresent() && destination.isPresent() && flightDto.getNrOfSeats() > 0) {
+                //if (start.isPresent() && destination.isPresent() && flightDto.getNrOfSeats() > 0) {
+                if (start.isPresent() && destination.isPresent()) {
                     Flight flight = new Flight(start.get(), destination.get(),
                             flightDto.getStartDate(), flightDto.getNrOfSeats());
                     flight.setId(flightDto.getId());
