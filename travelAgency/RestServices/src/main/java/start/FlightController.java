@@ -1,4 +1,4 @@
-package start.rest;
+package start;
 
 
 import api.FlightRepository;

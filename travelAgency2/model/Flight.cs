@@ -8,7 +8,10 @@ namespace model
         public Location destination { get; set; }
         public DateTime startDate { get; set; }
         public int nrOfSeats { get; set; }
-
+        public Flight() : base(0L)
+        {
+            
+        }
         public Flight(long id, Location start, Location destination, DateTime startDate, int nrOfSeats) : base(id)
         {
             this.start = start;
@@ -20,7 +23,7 @@ namespace model
         public override string ToString()
         {
             //base.ToString() + ": " +
-            return start + " " + destination + " " + startDate + " " + nrOfSeats;
+            return Id + " " + start + " " + destination + " " + startDate + " " + nrOfSeats;
         }
     }
 }
