@@ -17,7 +17,11 @@ namespace model
             this.name = name;
             this.airport = airport;
         }
-
+        public Location() : base(0L)
+        {
+            
+        }
+        
         public Location(string name) : base(0L)
         {
             this.name = name;
