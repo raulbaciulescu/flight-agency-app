@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Properties;
 
-@Component
 public class TableFactory {
     private final JdbcUtils dbUtils;
 

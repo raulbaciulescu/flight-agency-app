@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-@Component
 public class LocationRepositoryImpl implements LocationRepository {
     private final Table<Long, Location> table;
 
