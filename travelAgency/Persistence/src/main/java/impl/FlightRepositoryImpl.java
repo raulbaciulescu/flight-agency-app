@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Component
 public class FlightRepositoryImpl implements FlightRepository {
     private final Table<Long, FlightDto> table;
     private final LocationRepository locationRepository;
