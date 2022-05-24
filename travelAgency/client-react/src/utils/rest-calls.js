@@ -38,6 +38,32 @@ export function addFlight(flight) {
         })
 }
 
+export function updateFlight(flight) {
+    console.log("inainte de fetch put" + JSON.stringify(flight));
+
+    let headers = new Headers();
+    headers.append("Accept", "application/json");
+    headers.append("Content-Type", "application/json");
+
+    let antet = {
+        method: "PUT",
+        headers: headers,
+        mode: "cors",
+        body: JSON.stringify(flight)
+    }
+    const flightUpdateUrl = BASE_URL + "/" + flight.id;
+    console.log("URL pentru update   " + flightUpdateUrl)
+    return fetch(flightUpdateUrl, antet)
+        .then(status)
+        .then(response => {
+            return response.text;
+        })
+        .catch(error => {
+            console.log("Request failed ", error);
+            return new Promise.reject(error);
+        })
+}
+
 export function deleteFlight(id) {
     console.log("inainte de fetch delete")
     let headers = new Headers();

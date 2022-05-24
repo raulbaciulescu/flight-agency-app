@@ -1,27 +1,20 @@
 package domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @jakarta.persistence.Entity
-@Table( name = "flightt")
-
-@Component
-public class FlightNew extends Entity<Integer> implements Serializable {
-    @Column(name = "start")
+@Table( name = "flight_new")
+public class FlightNew extends Entity<Integer> {
     private String start;
-    @Column(name = "destination")
     private String destination;
-    @Column(name = "startDate")
-    private LocalDateTime startDate;
-    @Column(name = "nrOfSeats")
+    private Date startDate;
     private Integer nrOfSeats;
 
-    public FlightNew(String start, String destination, LocalDateTime startDate, int nrOfSeats) {
+    public FlightNew(String start, String destination, Date startDate, int nrOfSeats) {
         this.start = start;
         this.destination = destination;
         this.startDate = startDate;
@@ -32,7 +25,7 @@ public class FlightNew extends Entity<Integer> implements Serializable {
 
     }
 
-    public FlightNew(Integer id, String start, String destination, LocalDateTime startDate, int nrOfSeats) {
+    public FlightNew(Integer id, String start, String destination, Date startDate, int nrOfSeats) {
         this.setId(id);
         this.start = start;
         this.destination = destination;
@@ -68,11 +61,11 @@ public class FlightNew extends Entity<Integer> implements Serializable {
         this.destination = destination;
     }
 
-    public LocalDateTime getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 

@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Properties;
 
+@Component
 public class TableFactory {
     private final JdbcUtils dbUtils;
 
@@ -29,6 +30,9 @@ public class TableFactory {
             return new FlightTable(dbUtils.getConnection());
         if (table == Constants.Db.Tables.PURCHASE)
             return new PurchaseTable(dbUtils.getConnection());
+        if (table == Constants.Db.Tables.FLIGHT_NEW)
+            return new FlightNewTable(dbUtils.getConnection());
+
         return new LocationTable(dbUtils.getConnection());
     }
 }

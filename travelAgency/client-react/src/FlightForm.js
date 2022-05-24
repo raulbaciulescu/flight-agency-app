@@ -12,6 +12,10 @@ class FlightForm extends React.Component {
         };
     }
 
+    handleIdChange = (event) => {
+        this.setState({id: event.target.value});
+    }
+
     handleStartChange = (event) => {
         this.setState({start: event.target.value});
     }
@@ -30,12 +34,60 @@ class FlightForm extends React.Component {
 
     handleSubmit = (event) => {
         let flight = {
-            name:this.state.name,
-            passwd:this.state.passwd
+            start: this.state.start,
+            destination: this.state.destination,
+            startDate: this.state.startDate,
+            nrOfSeats: this.state.nrOfSeats
         }
-        console.log('A user was submitted: ');
-        console.log(user);
-        this.props.addFunc(user);
+        console.log('A flight was submitted: ');
+        console.log(flight);
+        this.props.addFunc(flight);
         event.preventDefault();
     }
+
+    handleUpdate = (event) => {
+        let flight = {
+            id: this.state.id,
+            start: this.state.start,
+            destination: this.state.destination,
+            startDate: this.state.startDate,
+            nrOfSeats: this.state.nrOfSeats
+        }
+        console.log('A flight was updated: ');
+        console.log(flight);
+        this.props.updateFunc(flight);
+        event.preventDefault();
+    }
+
+    render() {
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <label>
+                    Id:
+                    <input type="number" value={this.state.id} onChange={this.handleIdChange} />
+                </label><br/><br/>
+                <label>
+                    Start:
+                    <input type="text" value={this.state.start} onChange={this.handleStartChange} />
+                </label><br/><br/>
+                <label>
+                    Destination:
+                    <input type="text" value={this.state.destination} onChange={this.handleDestinationChange} />
+                </label><br/><br/>
+                <label>
+                    StartDate:
+                    <input type="date" value={this.state.startDate} onChange={this.handleStartDateChange} />
+                </label><br/><br/>
+                <label>
+                    Number Of Seats:
+                    <input type="number" value={this.state.nrOfSeats} onChange={this.handleNrOfSeatsChange} />
+                </label><br/><br/>
+                <input type="submit" value="Add flight" /><br/><br/>
+                <button onClick={this.handleUpdate}> Update flight</button>
+            </form>
+
+        );
+    }
 }
+
+export default FlightForm;
