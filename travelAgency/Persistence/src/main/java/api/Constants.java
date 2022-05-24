@@ -18,7 +18,8 @@ public class Constants {
             FLIGHT,
             LOCATION,
             PURCHASE,
-            USER
+            USER,
+            FLIGHT_NEW
         }
     }
 }

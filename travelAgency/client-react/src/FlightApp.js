@@ -1,12 +1,17 @@
 import React from "react";
-import {addFlight, deleteFlight, getFlights} from "./utils/rest-calls";
+import {addFlight, deleteFlight, getFlights, updateFlight} from "./utils/rest-calls";
+import FlightForm from "./FlightForm";
+import FlightTable from "./FlightTable";
+import './FlightApp.css'
 
 class FlightApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             flights: [],
+            flightUpdate: null,
             deleteFunc: this.deleteFunc.bind(this),
+            updateFunc: this.updateFunc.bind(this),
             addFunc: this.addFunc.bind(this)
         };
         console.log("Flight App constructor");
@@ -28,6 +33,14 @@ class FlightApp extends React.Component {
             .catch(error => console.log('error add ', error));
     }
 
+    updateFunc(id, flight){
+        console.log('inside updateFunc ' + id);
+        updateFlight(flight)
+            .then(result => getFlights())
+            .then(flights => this.setState({flights}))
+            .catch(error => console.log('error update', error));
+    }
+
     deleteFunc(id){
         console.log('inside deleteFunc ' + id);
         deleteFlight(id)
@@ -40,7 +53,13 @@ class FlightApp extends React.Component {
         return(
             <div className="FlightApp">
                 <h1>Flights</h1>
+                <FlightForm addFunc={this.state.addFunc} updateFunc={this.state.updateFunc}/>
                 <br/>
+                <br/>
+                <FlightTable
+                    flights={this.state.flights}
+                    deleteFunc={this.state.deleteFunc}
+                />
             </div>
         )
     }
