@@ -34,6 +34,7 @@ class FlightForm extends React.Component {
 
     handleSubmit = (event) => {
         let flight = {
+            id: this.state.id,
             start: this.state.start,
             destination: this.state.destination,
             startDate: this.state.startDate,
@@ -82,8 +83,9 @@ class FlightForm extends React.Component {
                     Number Of Seats:
                     <input type="number" value={this.state.nrOfSeats} onChange={this.handleNrOfSeatsChange} />
                 </label><br/><br/>
-                <input type="submit" value="Add flight" /><br/><br/>
-                <button onClick={this.handleUpdate}> Update flight</button>
+
+                <button onClick={this.handleUpdate}>Update flight</button>
+                <button onClick={this.handleSubmit}>add flight</button>
             </form>
 
         );

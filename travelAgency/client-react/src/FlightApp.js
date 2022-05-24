@@ -33,8 +33,8 @@ class FlightApp extends React.Component {
             .catch(error => console.log('error add ', error));
     }
 
-    updateFunc(id, flight){
-        console.log('inside updateFunc ' + id);
+    updateFunc(flight){
+        console.log('inside updateFunc ' + flight.id);
         updateFlight(flight)
             .then(result => getFlights())
             .then(flights => this.setState({flights}))
