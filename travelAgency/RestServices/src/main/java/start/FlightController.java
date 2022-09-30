@@ -24,7 +24,7 @@ public class FlightController {
 
     @RequestMapping("/hello")
     public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-        System.out.println("nu");
+        System.out.println("hello");
         return String.format(template, name);
     }
 

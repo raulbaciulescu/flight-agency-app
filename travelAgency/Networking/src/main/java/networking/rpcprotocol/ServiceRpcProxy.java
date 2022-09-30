@@ -19,7 +19,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class ServiceRpcProxy implements Service {
     private String host;
     private int port;
-
     private Observer client;
 
     private ObjectInputStream input;
