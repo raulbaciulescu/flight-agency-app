@@ -40,7 +40,7 @@ public class ReflectionRpcWorker implements Runnable, Observer {
 
     @Override
     public void updateFlight(Flight flight) {
-        Response resp=new Response.Builder().type(ResponseType.FLIGHT).data(flight).build();
+        Response resp = new Response.Builder().type(ResponseType.FLIGHT).data(flight).build();
         System.out.println("notify users in worker " + flight);
         sendResponse(resp);
     }

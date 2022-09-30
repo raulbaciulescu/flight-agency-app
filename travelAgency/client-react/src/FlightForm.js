@@ -85,7 +85,7 @@ class FlightForm extends React.Component {
                 </label><br/><br/>
 
                 <button onClick={this.handleUpdate}>Update flight</button>
-                <button onClick={this.handleSubmit}>add flight</button>
+                <button onClick={this.handleSubmit}>Add flight</button>
             </form>
 
         );
